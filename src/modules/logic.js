@@ -7,38 +7,37 @@ const Logic = (() => {
         { mode: "cors" }
       );
       const weatherData = await response.json();
-      console.log(response);
-      console.log(weatherData);
       return weatherData;
     } catch (error) {
       console.log("Error, try again.");
     }
   }
 
-  function getWeather(data) {
+  async function getWeather(place) {
+    const data = await getData(place);
+
     const location = data.name;
     const currentTemp = `${Math.round(data.main.temp)}°F`;
-    const lowTemp = `${Math.round(data.main.temp_min)}°F`;
-    const highTemp = `${Math.round(data.main.temp_max)}°F`;
-    const humidity = `${data.main.humidity}%`;
-    const feelsLike = `${Math.round(data.main.feels_like)}°F`;
-    const wind = `${data.wind.speed} mph`;
+    const lowTemp = `Low: ${Math.round(data.main.temp_min)}°F`;
+    const highTemp = `High: ${Math.round(data.main.temp_max)}°F`;
+    const humidity = `Humidity: ${data.main.humidity}%`;
+    const wind = `Wind: ${data.wind.speed} mph`;
+    const feelsLike = `Feels like ${Math.round(data.main.feels_like)}°F`;
+
     const conditions = [
       location,
       currentTemp,
       lowTemp,
       highTemp,
       humidity,
-      feelsLike,
       wind,
+      feelsLike,
     ];
 
-    conditions.forEach((condition) => {
-      console.log(condition);
-    });
+    return conditions;
   }
 
-  return { getData, getWeather };
+  return { getWeather };
 })();
 
 export { Logic };
