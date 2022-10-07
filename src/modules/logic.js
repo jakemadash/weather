@@ -6,35 +6,43 @@ const Logic = (() => {
       `,
         { mode: "cors" }
       );
-      const weatherData = await response.json();
-      return weatherData;
+
+      if (response.ok) {
+        const weatherData = await response.json();
+        return weatherData;
+      } else throw new Error("try again.");
     } catch (error) {
-      console.log("Error, try again.");
+      console.log(typeof error);
+      return error;
     }
   }
 
   async function getWeather(place) {
     const data = await getData(place);
 
-    const location = data.name;
-    const currentTemp = `${Math.round(data.main.temp)}°F`;
-    const lowTemp = `Low: ${Math.round(data.main.temp_min)}°F`;
-    const highTemp = `High: ${Math.round(data.main.temp_max)}°F`;
-    const humidity = `Humidity: ${data.main.humidity}%`;
-    const wind = `Wind: ${data.wind.speed} mph`;
-    const feelsLike = `Feels like ${Math.round(data.main.feels_like)}°F`;
+    if (data instanceof Error) {
+      return data;
+    } else {
+      const location = data.name;
+      const currentTemp = `${Math.round(data.main.temp)}°F`;
+      const lowTemp = `Low: ${Math.round(data.main.temp_min)}°F`;
+      const highTemp = `High: ${Math.round(data.main.temp_max)}°F`;
+      const humidity = `Humidity: ${data.main.humidity}%`;
+      const wind = `Wind: ${data.wind.speed} mph`;
+      const feelsLike = `Feels like ${Math.round(data.main.feels_like)}°F`;
 
-    const conditions = [
-      location,
-      currentTemp,
-      lowTemp,
-      highTemp,
-      humidity,
-      wind,
-      feelsLike,
-    ];
+      const conditions = [
+        location,
+        currentTemp,
+        lowTemp,
+        highTemp,
+        humidity,
+        wind,
+        feelsLike,
+      ];
 
-    return conditions;
+      return conditions;
+    }
   }
 
   return { getWeather };
