@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_logic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/logic.js */ \"./src/modules/logic.js\");\n/* harmony import */ var _modules_dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/dom.js */ \"./src/modules/dom.js\");\n\n\nconst search = document.querySelector(\"input[type='search']\");\nconst submit = document.querySelector(\"input[type='submit']\");\nsubmit.addEventListener(\"click\", async () => {\n  const location = search.value;\n  const data = await _modules_logic_js__WEBPACK_IMPORTED_MODULE_0__.Logic.getWeather(location);\n  _modules_dom_js__WEBPACK_IMPORTED_MODULE_1__.DOM.showWeather(data);\n});\n\n//# sourceURL=webpack://weather/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_logic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/logic.js */ \"./src/modules/logic.js\");\n/* harmony import */ var _modules_dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/dom.js */ \"./src/modules/dom.js\");\n\n\nconst search = document.querySelector(\"input[type='search']\");\nconst submit = document.querySelector(\"button\");\nsearch.addEventListener(\"keydown\", event => {\n  if (event.keyCode === 13) weather();\n});\nsubmit.addEventListener(\"click\", weather);\n\nasync function weather() {\n  const location = search.value;\n  const data = await _modules_logic_js__WEBPACK_IMPORTED_MODULE_0__.Logic.getWeather(location);\n  _modules_dom_js__WEBPACK_IMPORTED_MODULE_1__.DOM.showWeather(data);\n}\n\n//# sourceURL=webpack://weather/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"DOM\": () => (/* binding */ DOM)\n/* harmony export */ });\nconst DOM = (() => {\n  function showWeather(data) {\n    const error = document.querySelector(\"p\");\n    const divs = document.querySelectorAll(\"div\");\n\n    if (!Array.isArray(data)) {\n      error.textContent = data;\n      divs.forEach(div => {\n        div.textContent = \"\";\n      });\n    } else error.textContent = \"\";\n\n    divs.forEach((div, index) => {\n      div.textContent = data[index];\n    });\n  }\n\n  return {\n    showWeather\n  };\n})();\n\n\n\n//# sourceURL=webpack://weather/./src/modules/dom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"DOM\": () => (/* binding */ DOM)\n/* harmony export */ });\nconst DOM = (() => {\n  function showWeather(data) {\n    const error = document.querySelector(\"p\");\n    const divs = document.querySelectorAll(\".weather > div\");\n\n    if (!Array.isArray(data)) {\n      error.textContent = data;\n      divs.forEach(div => {\n        div.textContent = \"\";\n      });\n    } else error.textContent = \"\";\n\n    divs.forEach((div, index) => {\n      div.textContent = data[index];\n    });\n  }\n\n  return {\n    showWeather\n  };\n})();\n\n\n\n//# sourceURL=webpack://weather/./src/modules/dom.js?");
 
 /***/ }),
 

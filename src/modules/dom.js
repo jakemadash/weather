@@ -1,7 +1,7 @@
 const DOM = (() => {
   function showWeather(data) {
     const error = document.querySelector("p");
-    const divs = document.querySelectorAll("div");
+    const divs = document.querySelectorAll(".weather > div");
 
     if (!Array.isArray(data)) {
       error.textContent = data;
