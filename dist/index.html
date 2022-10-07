@@ -7,24 +7,31 @@
     <title>Document</title>
     <script src="./main.js" defer></script>
     <link rel="stylesheet" href="../src/style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Manrope&family=Montserrat+Alternates:wght@500&display=swap");
+    </style>
   </head>
   <body>
-    <div class="search">
-      <div class="search-bar">
-        <label for="search">Enter a city or town</label><br />
-        <input type="search" id="search" />
+    <div class="content">
+      <div class="search">
+        <div class="search-bar">
+          <label for="search">Enter a city or town</label><br />
+          <input type="search" id="search" autofocus />
+        </div>
+        <button>Go</button>
       </div>
-      <button>Go</button>
-    </div>
-    <p></p>
-    <div class="weather">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <p></p>
+      <div class="weather">
+        <div id="city"></div>
+        <div id="temp"></div>
+        <div class="range">
+          <div></div>
+          <div></div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </body>
 </html>

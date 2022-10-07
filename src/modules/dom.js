@@ -1,7 +1,7 @@
 const DOM = (() => {
   function showWeather(data) {
     const error = document.querySelector("p");
-    const divs = document.querySelectorAll(".weather > div");
+    const divs = document.querySelectorAll(".weather div:not(.range)");
 
     if (!Array.isArray(data)) {
       error.textContent = data;
@@ -14,7 +14,18 @@ const DOM = (() => {
     });
   }
 
-  return { showWeather };
+  function colorCoordinate(data) {
+    const root = document.querySelector(":root");
+    const longitude = data[7];
+    const latitude = data[8];
+    const random = longitude - latitude;
+
+    root.style.background = `linear-gradient(rgba(${longitude}, ${latitude}, ${random}, 0.5), rgba(${
+      255 - longitude
+    }, ${255 - latitude}, ${255 - random}, 0.5))`;
+  }
+
+  return { showWeather, colorCoordinate };
 })();
 
 export { DOM };

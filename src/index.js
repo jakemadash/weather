@@ -13,4 +13,5 @@ async function weather() {
   const location = search.value;
   const data = await Logic.getWeather(location);
   DOM.showWeather(data);
+  DOM.colorCoordinate(data);
 }

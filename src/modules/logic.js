@@ -10,7 +10,7 @@ const Logic = (() => {
       if (response.ok) {
         const weatherData = await response.json();
         return weatherData;
-      } else throw new Error("try again.");
+      } else throw new Error("try again");
     } catch (error) {
       console.log(typeof error);
       return error;
@@ -29,7 +29,9 @@ const Logic = (() => {
       const highTemp = `High: ${Math.round(data.main.temp_max)}°F`;
       const humidity = `Humidity: ${data.main.humidity}%`;
       const wind = `Wind: ${data.wind.speed} mph`;
-      const feelsLike = `Feels like ${Math.round(data.main.feels_like)}°F`;
+      const feelsLike = `Feels like: ${Math.round(data.main.feels_like)}°F`;
+      const latitude = data.coord.lat;
+      const longitude = data.coord.lon;
 
       const conditions = [
         location,
@@ -39,6 +41,8 @@ const Logic = (() => {
         humidity,
         wind,
         feelsLike,
+        latitude,
+        longitude,
       ];
 
       return conditions;
