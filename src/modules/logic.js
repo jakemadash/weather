@@ -12,7 +12,6 @@ const Logic = (() => {
         return weatherData;
       } else throw new Error("try again");
     } catch (error) {
-      console.log(typeof error);
       return error;
     }
   }
